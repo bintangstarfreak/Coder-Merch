@@ -8,6 +8,8 @@
 
 import Foundation
 
+//membuat data kategori dan produk
+
 class DataService {
     static let instance = DataService()
     
@@ -15,7 +17,7 @@ class DataService {
         CategoryModel(title: "SHIRTS", imageName: "shirts.png"),
         CategoryModel(title: "HOODIES", imageName: "hoodies.png"),
         CategoryModel(title: "HATS", imageName: "hats.png"),
-        CategoryModel(title: "DIGITAL", imageName: "digital.png")
+        CategoryModel(title: "DIGITAL", imageName: "digital.png"),
     ]
     
     private let hats = [
@@ -36,9 +38,8 @@ class DataService {
     private let hoodies = [
         Product(title: "hoodie Black", price: "Rp. 150000", imageName: "hoodie01.jpg"),
         Product(title: "hoodie pink", price: "Rp. 350000", imageName: "hoodie02.jpg"),
-        Product(title: "hoodie green", price: "Rp. 450000", imageName: "hoodie03.jpg"),
-        Product(title: "hoodie red", price: "Rp. 450000", imageName: "hoodie04.jpg"),
-        Product(title: "hoodie custom", price: "Rp. 250000", imageName: "hoodie05.jpg"),
+        Product(title: "hoodie green", price: "Rp. 450000", imageName: "hoodie3.jpg"),
+        Product(title: "hoodie red", price: "Rp. 450000", imageName: "hoodie4.jpg"),
     ]
     
     private let digitals = [Product]()
@@ -78,7 +79,7 @@ class DataService {
     func getDigitals() -> [Product] {
         return digitals
     }
-    
+   
 }
 
 

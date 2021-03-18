@@ -9,28 +9,37 @@
 import UIKit
 
 class ProductsVC: UIViewController {
+    
+    //memberi nama variabel dengan kategori produk di dataservice
+    var products = [Product]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
     }
     
+    //penampung dan melakukan panggilan dari categoriesVC
+    func initProducts(category: CategoryModel) {
+        products = DataService.instance.getProducts(category: category.title)
+    
+    }
 }
 
-extension ProductsVC: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return DataService.instance.getCategories().count
+//
+extension ProductsVC: UICollectionViewDelegate,UICollectionViewDataSource {
+func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return products.count
+}
+
+func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCell", for: indexPath) as? ProductCategory {
+        cell.updateViews(product: products[indexPath.row])
+        return cell
     }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell") as? CategoryCell {
-            let category = DataService.instance.getCategories()[indexPath.row]
-            cell.updateViews(category: category)
-            return cell
-        }
-        return UITableViewCell()
+    return UICollectionViewCell()
     }
-    
 
 }
+
+
 

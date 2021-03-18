@@ -13,9 +13,11 @@ class ProductCategory: UICollectionViewCell {
     @IBOutlet weak var productItemTitle: UILabel!
     @IBOutlet weak var productItemPrice: UILabel!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    //fungsi untuk mengisi item pada collection / table view
+    func updateViews(product: Product) {
+        self.productItemImage.image = UIImage(named: product.imageName)
+        self.productItemTitle.text = product.title
+        self.productItemPrice.text = product.price
     }
 
 }

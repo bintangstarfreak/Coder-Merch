@@ -14,6 +14,12 @@ class CategoriesVC: UIViewController {
         super.viewDidLoad()
         
     }
+    //melakukan operan perpindahan page
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let productsVC = segue.destination as? ProductsVC {
+            productsVC.initProducts(category: sender as! CategoryModel)
+        }
+    }
 
 
 }
@@ -30,6 +36,11 @@ extension CategoriesVC: UITableViewDelegate, UITableViewDataSource {
             return cell
         }
         return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let category = DataService.instance.getCategories()[indexPath.row]
+        performSegue(withIdentifier: "goToProductVC", sender: category)
     }
     
 
